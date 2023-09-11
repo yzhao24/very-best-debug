@@ -1,0 +1,62 @@
+<h1>List of venues</h1>
+
+<form action="/insert_venue_record">
+  <label for="browser_venue">Address</label>
+  <input id="browser_venue" type="text" name="query_address" placeholder="Enter an address...">
+  
+  <label for="browser_name">Name</label>
+  <input id="browser_name" type="text" name="query_name" placeholder="Enter a name...">
+  
+  <label for="browser_neighborhood">Neighborhood</label>
+  <input id="browser_neighborhood" type="text" name="query_neighborhood" placeholder="Enter a neighborhood...">
+
+  <button>Add venue</button>
+</form>
+
+<hr>
+
+<table border="1">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Address
+    </th>
+
+    <th>
+      Name
+    </th>
+
+    <th>
+      Neighborhood
+    </th>
+
+    <th></th>
+  </tr>
+
+  <% @venues.each do |venue| %>
+  <tr>
+    <td>
+      <%= venue.id %>
+    </td>
+    <td>
+      <%= venue.address %>
+    </td>
+   
+    <td>
+      <%= venue.name %>
+    </td>
+   
+    <td>
+      <%= venue.neighborhood %>
+    </td>
+
+    <td>
+      <a href="/venues/<%= venue.id %>">Show details</a>
+    </td>
+  </tr>
+  
+  <% end %>
+</table>

@@ -1,0 +1,88 @@
+<h1>venue Details</h1>
+
+<dl>
+  <dt>Address</dt>
+  <dd>
+    <%= @the_venue.address %>
+  </dd>
+
+  <dt>Name</dt>
+  <dd>
+    <p><%= @the_venue.name %></p>
+  </dd>
+
+  <dt>Neighborhood</dt>
+  <dd>
+    <%= @the_venue.neighborhood %>
+  </dd>
+
+  <dt>Posted</dt>
+  <dd>
+    <%= @the_venue.created_at %>
+  </dd>
+
+  <dt>Edit venue</dt>
+  <dd>
+    <form action="/update_venue/<%= @the_venue.id %>">
+      <label for="browser_venue">Address</label>
+      <input id="browser_venue" type="text" name="query_address" value="<%= @the_venue.address %>" placeholder="Enter an address...">
+      
+      <label for="browser_name">Name</label>
+      <input id="browser_name" type="text" name="query_name" value="<%= @the_venue.name %>" placeholder="Enter a name...">
+      
+      <label for="browser_neighborhood">Neighborhood</label>
+      <input id="browser_neighborhood" type="text" name="query_neighborhood" value="<%= @the_venue.neighborhood %>" placeholder="Enter a neighborhood...">
+
+      <button>Update venue</button>
+    </form>
+  </dd>
+
+  <dt>Delete venue</dt>
+  <dd>
+    <a href="/delete_venue/<% @the_venue.id %>">
+      Delete this venue
+    </a>
+  </dd>
+</dl>
+
+<h2>Comments</h2>
+
+<table>
+  <tr>
+    <th>Commenter</th>
+    <th>Comment</th>
+    <th>Posted</th>
+  </tr>
+
+  <% @the_venue.comments.each do |comment| %>
+  <tr>
+    <td>
+      <%= comment.commenter.username %>
+    </td>
+
+    <td>
+      <%= comment.body %>
+    </td>
+
+    <td>
+      <%= comment.created_at %>
+    </td>
+  </tr>
+  
+  <% end %>
+</table>
+
+<h3>Add a new comment</h3>
+
+<form action="/insert_comment_record">
+  <label for="browser_venue_id">Venue ID</label>
+  <input id="browser_venue_id" type="text" value="<%= @the_venue.id %>" name="query_venue_id">
+
+  <label for="browser_author_id">Author ID</label>
+  <input id="browser_author_id" type="text" name="query_author_id">
+
+  <label for="browser_comment">Comment</label>
+  <textarea id="browser_comment" name="query_body" placeholder="Enter a comment..."></textarea>
+
+  <button>Add comment</button>
+</form>
